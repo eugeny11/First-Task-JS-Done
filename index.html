@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <title>Intern Test Task</title>
+</head>
+<body>
+    <form id="job-form">
+        <div class="form-section">
+          <h3>Client Details</h3>
+          <div class="form-group">
+            <input type="text" id="first-name" name="first-name" placeholder="First name" required>
+            <input type="text" id="last-name" name="last-name" placeholder="Last name" required>
+          </div>
+          <div class="form-group">
+            <input type="tel" id="phone" name="phone" placeholder="Phone" required>
+          </div>
+          <div class="form-group">
+            <input type="email" id="email" name="email" placeholder="Email (optional)">
+          </div>
+        </div>
+      
+        <div class="form-section">
+          <h3>Job Details</h3>
+          <div class="form-group">
+            <div class="select-wrapper">
+                <select id="job-type" name="job-type" required>
+                  <option value="" disabled selected>Job Type</option>
+                  <option value="option1">Option 1</option>
+                  <option value="option2">Option 2</option>
+                </select>
+            </div>
+            <div class="select-wrapper">
+                <select id="job-source" name="job-source" required>
+                  <option value="" disabled selected>Job Source</option>
+                  <option value="option1">Option 1</option>
+                  <option value="option2">Option 2</option>
+                </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <textarea id="job-description" name="job-description" placeholder="Job description (optional)"></textarea>
+          </div>
+        </div>
+      
+        <div class="form-section">
+          <h3>Service Location</h3>
+          <div class="form-group">
+            <input type="text" id="address" name="address" placeholder="Address" required>
+          </div>
+          <div class="form-group">
+            <input type="text" id="city" name="city" placeholder="City">    
+          </div>
+          <div class="form-group">
+            <input type="text" id="state" name="state" placeholder="State">
+          </div>
+          <div class="form-group">
+            <input type="text" id="zip-code" name="zip-code" placeholder="Zip code">
+            <div class="select-wrapper">
+              <select id="area" name="area" required>
+                <option value="" disabled selected>Area</option>
+                <option value="option1">Option 1</option>
+                <option value="option2">Option 2</option>
+              </select>
+          </div>
+          </div>
+        </div>
+      
+        <div class="form-section">
+          <h3>Scheduled</h3>
+          <div class="form-group">
+            <div class="input-wrapper">
+              <input type="text" id="start-date" class="flatpickr" placeholder="Start Date" required>
+              <span class="icon calendar-icon"></span> 
+            </div>        
+          </div>
+          <div class="form-group">
+            <div class="input-wrapper input-wrapper--time">
+              <input type="text" id="start-time" class="flatpickr-time" placeholder="Start Time" required>
+              <span class="icon clock-icon"></span> 
+            </div>
+            <div class="input-wrapper input-wrapper--time">    
+              <input type="text" id="end-time" class="flatpickr-time" placeholder="End Time" required>
+              <span class="icon clock-icon"></span> 
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="select-wrapper">
+                <select id="test-select" name="test-select">
+                  <option value="" disabled selected>Test select</option>
+                  <option value="option1">Option 1</option>
+                  <option value="option2">Option 2</option>
+                </select>
+            </div>
+          </div>
+        </div>
+      
+        <div class="button-container">
+          <button id="create-job" class="btn gold-btn">Create job</button>
+          <button id="save-info" class="btn gray-btn">Save info</button>
+        </div>
+        
+      </form>
+      <script src="script.js"></script>
+</body>
+</html>
