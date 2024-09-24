@@ -9,12 +9,27 @@ document
     const startTime = document.getElementById("start-time").value;
     const endTime = document.getElementById("end-time").value;
 
-    // Вычисляем длительность работы
     const startDateTime = new Date(`${startDate}T${startTime}`);
     const endDateTime = new Date(`${startDate}T${endTime}`);
     const durationInMinutes = (endDateTime - startDateTime) / (1000 * 60); // в минутах
     const durationHours = Math.floor(durationInMinutes / 60);
     const durationMinutes = durationInMinutes % 60;
+
+    const city = document.getElementById("city").value;
+    const state = document.getElementById("state").value;
+    const zipCode = document.getElementById("zip-code").value;
+    const address = document.getElementById("address").value;
+    const area = document.getElementById("area").value;
+
+    const fullLocation = `${address}, ${city}, ${state}, ${zipCode}, ${area}`;
+
+    const email = document.getElementById("email").value;
+    const phone = document.getElementById("phone").value;
+
+    const jobType = document.getElementById("job-type").value;
+    const jobDescription = document.getElementById("job-description").value;
+
+    const note = `${phone}, ${email}`;
 
     const duration = `${durationHours}:${durationMinutes
       .toString()
@@ -23,14 +38,15 @@ document
     const formData = {
       subject: `${document.getElementById("first-name").value} ${
         document.getElementById("last-name").value
-      }`, // subject — тема активности
-      due_date: startDate, // Дата начала активности
-      due_time: startTime, // Время начала в формате HH:MM
-      duration: duration, // Продолжительность в формате HH:MM
-      location: document.getElementById("address").value, // Адрес активности
-      type: document.getElementById("job-type").value, // Тип активности
-      note: document.getElementById("email").value, // Заметка, например, email
-      org_id: 1, // ID организации (замените 1 на актуальный ID)
+      }`,
+      due_date: startDate,
+      due_time: startTime,
+      duration: duration,
+      location: fullLocation,
+      type: jobType,
+      note: note,
+      public_description: jobDescription,
+      org_id: 1,
     };
 
     fetch(`https://api.pipedrive.com/v1/activities?api_token=${API_KEY}`, {
