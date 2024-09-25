@@ -11,7 +11,7 @@ document
 
     const startDateTime = new Date(`${startDate}T${startTime}`);
     const endDateTime = new Date(`${startDate}T${endTime}`);
-    const durationInMinutes = (endDateTime - startDateTime) / (1000 * 60); // в минутах
+    const durationInMinutes = (endDateTime - startDateTime) / (1000 * 60);
     const durationHours = Math.floor(durationInMinutes / 60);
     const durationMinutes = durationInMinutes % 60;
 
