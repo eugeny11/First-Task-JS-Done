@@ -1,6 +1,6 @@
 console.log("Script is loading");
 
-document.addEventListener("DOMContentLoaded", function () {
+/* document.addEventListener("DOMContentLoaded", function () {
   const sdkScript = document.createElement("script");
   sdkScript.src =
     "https://cdn.jsdelivr.net/npm/@pipedrive/app-extensions-sdk@0/dist/index.umd.js";
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
         sdk.initialize();
         console.log(
-          "Pipedrive SDK initialized with modal ID: c5062d3a-7cc3-483e-9323-2622450d78c7"
+          "Pipedrive SDK initialized with ID: c5062d3a-7cc3-483e-9323-2622450d78c7"
         );
       } catch (error) {
         console.error("Error initializing SDK:", error);
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Добавляем элемент <script> в <head>
   document.head.appendChild(sdkScript);
-});
+}); */
 
 const API_KEY =
   "v1u:AQIBAHj-LzTNK2yuuuaLqifzhWb9crUNKTpk4FlQ9rjnXqp_6AE-mSRsNEc-qt-JZF1QvUyHAAAAfjB8BgkqhkiG9w0BBwagbzBtAgEAMGgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMGqcEIUgSSD15bcXPAgEQgDtLA6W-OJ_ytVMrWzkVH7tyBFy3C5ZLb1hgRXukifjFKHrPSN0XT5mLYmrNgQAPNro5MhWeqqjIaVI6zA:zn_8Djfa-Be4Ae4y5dP1bDAJXK2iI08lVaiMEuIFIR_k8OYS5zYDGv0D2Y1bmgRqDSOhbQTnbiuYx-POUK4_H7GQs8vJWVV4JNkZxlObbcyKFv5CHySkJ_r-mddcqI8WNuDcP16VBRhCV2VLgYDJZoP6XOwplE9e39zvuX6Huzl6d1Kqq8XrMqp40cpf1n0D126pizkx8EX2IySYVOhoBk1OAfocjMG59wDufSZRKxvmzPjPDQu_igYlQ0Hn9hOwcQST_kRRvz-MPjLaaGtSNnu92GzbbhanjYCqU8MMU66EXQgA_zcVLBPlxQ";
