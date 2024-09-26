@@ -1,10 +1,14 @@
 document.addEventListener("DOMContentLoaded", function () {
   if (typeof pipedrive !== "undefined") {
+    console.log("Pipedrive SDK Loaded");
+
     pipedrive.on("dealDetailModal.load", function (modal) {
       console.log("Modal opened for deal:", modal.relatedEntityId);
     });
   } else {
-    console.error("Pipedrive is not defined");
+    console.error(
+      "Pipedrive is not defined. Make sure the SDK is correctly loaded."
+    );
   }
 });
 
