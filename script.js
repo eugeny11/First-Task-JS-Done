@@ -1,3 +1,5 @@
+console.log("Script is loading");
+
 document.addEventListener("DOMContentLoaded", function () {
   if (typeof AppExtensionsSDK !== "undefined") {
     console.log("SDK is loaded");
