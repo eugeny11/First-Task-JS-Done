@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    
+    <script src="https://js.pipedrive.com/v1/"></script>
     <title>Intern Test Task</title>
    
 </head>
@@ -108,15 +108,23 @@
         </div>
         
       </form>
-      <script src="https://js.pipedrive.com/v1/"></script>
+     
       <script>
         document.addEventListener("DOMContentLoaded", function() {
-          if (typeof pipedrive !== 'undefined'){
-            pipedrive.on('dealDetailModal.load', function(modal) {
-              console.log('Modal opened for deal:', modal.relatedEntityId);})
-          } else {
-        console.error('Pipedrive is not defined');}       
-        })
+ 
+  var interval = setInterval(function() {
+    if (typeof pipedrive !== 'undefined') {
+      clearInterval(interval);
+      console.log('Pipedrive SDK loaded');
+      
+      pipedrive.on('dealDetailModal.load', function(modal) {
+        console.log('Modal opened for deal:', modal.relatedEntityId);
+      });
+    } else {
+      console.log('Waiting for Pipedrive SDK to load...');
+    }
+  }, 100); 
+});
       </script>
       <script src="script.js"></script>
 </body>
