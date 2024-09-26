@@ -1,23 +1,33 @@
 console.log("Script is loading");
 
 document.addEventListener("DOMContentLoaded", function () {
-  if (typeof AppExtensionsSDK !== "undefined") {
-    console.log("SDK is loaded");
+  const sdkScript = document.createElement("script");
+  sdkScript.src =
+    "https://cdn.jsdelivr.net/npm/@pipedrive/app-extensions-sdk@0/dist/index.umd.js";
+  sdkScript.onload = function () {
+    console.log("Pipedrive SDK script loaded successfully.");
 
-    try {
-      const sdk = new AppExtensionsSDK({
-        identifier: "c5062d3a-7cc3-483e-9323-2622450d78c7",
-      });
-      sdk.initialize();
-      console.log(
-        "Pipedrive SDK initialized with modal ID: c5062d3a-7cc3-483e-9323-2622450d78c7"
-      );
-    } catch (error) {
-      console.error("Error initializing SDK:", error);
+    if (typeof AppExtensionsSDK !== "undefined") {
+      console.log("SDK is loaded");
+
+      try {
+        const sdk = new AppExtensionsSDK({ identifier: "your-modal-id" });
+        sdk.initialize();
+        console.log("Pipedrive SDK initialized with modal ID: your-modal-id");
+      } catch (error) {
+        console.error("Error initializing SDK:", error);
+      }
+    } else {
+      console.error("SDK did not load");
     }
-  } else {
-    console.error("SDK did not load");
-  }
+  };
+
+  sdkScript.onerror = function () {
+    console.error("Error loading Pipedrive SDK script.");
+  };
+
+  // Добавляем элемент <script> в <head>
+  document.head.appendChild(sdkScript);
 });
 
 const API_KEY =
