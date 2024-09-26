@@ -50,10 +50,11 @@ document
       org_id: 1,
     };
 
-    fetch(`https://api.pipedrive.com/v1/activities?api_token=${API_KEY}`, {
+    fetch("https://api.pipedrive.com/v1/activities", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${API_KEY}`,
       },
       body: JSON.stringify(formData),
     })
