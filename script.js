@@ -1,5 +1,9 @@
 const API_KEY = "a66ceda31b39149bef5506cb4ea7ad27f0f7c195";
 
+window.Intercom("boot", {
+  app_id: "05388a26-1532-4304-8212-c1e24b1cf73d",
+});
+
 document
   .getElementById("job-form")
   .addEventListener("submit", function (event) {
