@@ -11,9 +11,13 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log("SDK is loaded");
 
       try {
-        const sdk = new AppExtensionsSDK({ identifier: "your-modal-id" });
+        const sdk = new AppExtensionsSDK({
+          identifier: "c5062d3a-7cc3-483e-9323-2622450d78c7",
+        });
         sdk.initialize();
-        console.log("Pipedrive SDK initialized with modal ID: your-modal-id");
+        console.log(
+          "Pipedrive SDK initialized with modal ID: c5062d3a-7cc3-483e-9323-2622450d78c7"
+        );
       } catch (error) {
         console.error("Error initializing SDK:", error);
       }
