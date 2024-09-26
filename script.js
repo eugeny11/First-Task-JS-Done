@@ -1,14 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
-  pipedrive.on("dealDetailModal.load", function (modal) {
-    console.log("Modal opened for deal:", modal.relatedEntityId);
-
-    // Добавляем логику для обработки формы
-    document
-      .getElementById("job-form")
-      .addEventListener("submit", function (event) {
-        event.preventDefault();
-      });
-  });
+  if (typeof pipedrive !== "undefined") {
+    pipedrive.on("dealDetailModal.load", function (modal) {
+      console.log("Modal opened for deal:", modal.relatedEntityId);
+    });
+  } else {
+    console.error("Pipedrive is not defined");
+  }
 });
 
 const API_KEY =
