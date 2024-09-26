@@ -109,26 +109,6 @@
         
       </form>
      
-      <script>
-        document.addEventListener("DOMContentLoaded", function() {
- 
-  const intervalId = setInterval(function() {
-    if (typeof pipedrive !== 'undefined') {
-      clearInterval(intervalId); 
-      console.log('Pipedrive SDK loaded');
-      
-      
-      pipedrive.on('dealDetailModal.load', function(modal) {
-        console.log('Modal opened for deal:', modal.relatedEntityId);
-        
-        
-      });
-    } else {
-      console.log('Waiting for Pipedrive SDK to load...');
-    }
-  }, 100); 
-});
-      </script>
       <script src="script.js"></script>
 </body>
 </html>
