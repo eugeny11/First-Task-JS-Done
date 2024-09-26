@@ -1,7 +1,7 @@
-document.addEventListener("DOMContentLoaded", async function () {
+document.addEventListener("DOMContentLoaded", function () {
   console.log("DOM fully loaded and parsed");
   try {
-    const sdk = await new AppExtensionsSDK({
+    const sdk = new AppExtensionsSDK({
       identifier: "your-modal-id",
     }).initialize();
     console.log("Pipedrive SDK initialized with modal ID: your-modal-id");
