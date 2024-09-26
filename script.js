@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", async function () {
+  console.log("DOM fully loaded and parsed");
   try {
     const sdk = await new AppExtensionsSDK({
       identifier: "your-modal-id",
