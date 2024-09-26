@@ -1,16 +1,14 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const intervalId = setInterval(function () {
-    if (typeof pipedrive !== "undefined") {
-      clearInterval(intervalId);
-      console.log("Pipedrive SDK loaded");
+  pipedrive.on("dealDetailModal.load", function (modal) {
+    console.log("Modal opened for deal:", modal.relatedEntityId);
 
-      pipedrive.on("dealDetailModal.load", function (modal) {
-        console.log("Modal opened for deal:", modal.relatedEntityId);
+    // Добавляем логику для обработки формы
+    document
+      .getElementById("job-form")
+      .addEventListener("submit", function (event) {
+        event.preventDefault();
       });
-    } else {
-      console.log("Waiting for Pipedrive SDK to load...");
-    }
-  }, 100);
+  });
 });
 
 const API_KEY =
