@@ -9,73 +9,14 @@
     <title>Intern Test Task</title>
 </head>
 <script>
-  function fetchUserData() {
-    return fetch('https://api.intercom.io/me', {
-      method: 'GET',
-      headers: {
-        'Authorization': 'Bearer grannusdrunemeton',
-        'Accept': 'application/json'
-      }
-    })
-    .then(response => response.json())
-    .catch(error => console.error('Error:', error));
-  }
-
-
-  fetchUserData().then(userData => {
-    if (userData) {
-      console.log(userData)
-      window.intercomSettings = {
-        api_base: "https://api-iam.intercom.io",
-        app_id: "poju5nhn",
-        user_id: userData.id,               
-        name: userData.name,                
-        email: userData.email,              
-        created_at: Math.floor(new Date(userData.created_at).getTime() / 1000), 
-        phone: userData.phone ? userData.phone : "No phone number available",    
-      };
-
-      
-      (function() {
-        var w = window;
-        var ic = w.Intercom;
-        if (typeof ic === "function") {
-          ic('reattach_activator');
-          ic('update', window.intercomSettings);
-        } else {
-          var d = document;
-          var i = function() {
-            i.c(arguments);
-          };
-          i.q = [];
-          i.c = function(args) {
-            i.q.push(args);
-          };
-          w.Intercom = i;
-          var l = function() {
-            var s = d.createElement('script');
-            s.type = 'text/javascript';
-            s.async = true;
-            s.src = 'https://widget.intercom.io/widget/YOUR_APP_ID';
-            var x = d.getElementsByTagName('script')[0];
-            x.parentNode.insertBefore(s, x);
-          };
-          if (document.readyState === 'complete') {
-            l();
-          } else if (w.attachEvent) {
-            w.attachEvent('onload', l);
-          } else {
-            w.addEventListener('load', l, false);
-          }
-        }
-      })();
-    } else {
-      console.error('No user data retrieved.');
-    }
-  });
-
+  window.intercomSettings = {
+    api_base: "https://api-iam.intercom.io",
+    app_id: "poju5nhn",
+    user_id: "05388a26-1532-4304-8212-c1e24b1cf73d",
+    name: "Grannus Drunemeton",
+    email: "grannus@gmx.com",
+  };
 </script>
-
 
 
 <script>
