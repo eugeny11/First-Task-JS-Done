@@ -110,8 +110,11 @@
       </form>
       <script>
         document.addEventListener("DOMContentLoaded", function() {
-          pipedrive.on('dealDetailModal.load', function(modal) {
-            console.log('Modal opened for deal:', modal.relatedEntityId);})
+          if (typeof pipedrive !== 'undefined'){
+            pipedrive.on('dealDetailModal.load', function(modal) {
+              console.log('Modal opened for deal:', modal.relatedEntityId);})
+          } else {
+        console.error('Pipedrive is not defined');}       
         })
       </script>
       <script src="script.js"></script>
