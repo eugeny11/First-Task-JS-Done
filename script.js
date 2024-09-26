@@ -49,13 +49,16 @@ document
       org_id: 1,
     };
 
-    fetch(`https://api.pipedrive.com/v1/activities?api_token=${API_KEY}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    })
+    fetch(
+      `https://cors-anywhere.herokuapp.com/https://api.pipedrive.com/v1/activities?api_token=${API_KEY}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      }
+    )
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
