@@ -37,9 +37,8 @@ document
 
     const urlParams = new URLSearchParams(window.location.search);
     const dealId = Number(urlParams.get("selectedIds"));
-    const userId = Number(urlParams.get("userId"));
 
-    if (!isNaN(dealId) && !isNaN(userId)) {
+    if (!isNaN(dealId)) {
       const formData = {
         subject: `${document.getElementById("first-name").value} ${
           document.getElementById("last-name").value
@@ -52,7 +51,6 @@ document
         note: note,
         public_description: jobDescription,
         deal_id: dealId,
-        user_id: userId,
       };
 
       fetch(`https://api.pipedrive.com/v1/activities?api_token=${API_KEY}`, {
