@@ -1,5 +1,5 @@
 const API_KEY =
-  "v1u:AQIBAHj-LzTNK2yuuuaLqifzhWb9crUNKTpk4FlQ9rjnXqp_6AE-mSRsNEc-qt-JZF1QvUyHAAAAfjB8BgkqhkiG9w0BBwagbzBtAgEAMGgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMGqcEIUgSSD15bcXPAgEQgDtLA6W-OJ_ytVMrWzkVH7tyBFy3C5ZLb1hgRXukifjFKHrPSN0XT5mLYmrNgQAPNro5MhWeqqjIaVI6zA:tMNDjMUO-RewGgrSThB3rboj5SSMKO-THTkwaJOPITSVKwFCZNSii5JZ22zr30lMqheaCZyHgtccYLkcOWJOJjM_Gud4H05sIyJqqYhMqXXJ4vKyGND2hF6gGhH6sh-Ly-ChPp65OfkA4TbbiQJnPTwt9C-ONQmKq7ArBU4rHC4rHB0vbqPWRoXMz8jy56C1ms6_Tj0UCv14eZwqrA9vppL57-5_EnbYUY3ZsrFzouCkfCJbo53CmexdSuU4xayRAgYWvG0GMMiAXkSiYE0h4Uqoncl1qOrVTNIcCyE0GFCcIDHCM1r1eo3wfw";
+  "v1u:AQIBAHj-LzTNK2yuuuaLqifzhWb9crUNKTpk4FlQ9rjnXqp_6AE-mSRsNEc-qt-JZF1QvUyHAAAAfjB8BgkqhkiG9w0BBwagbzBtAgEAMGgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMGqcEIUgSSD15bcXPAgEQgDtLA6W-OJ_ytVMrWzkVH7tyBFy3C5ZLb1hgRXukifjFKHrPSN0XT5mLYmrNgQAPNro5MhWeqqjIaVI6zA:xqCLBPoP-RdAjP7mhC9UlBDGDsyguCD1bwuQTet5CvF1uhiVKqLTns3U1TwA1IH8MH5eWmEoqn-9MOeB1tWwwS8IqfJ_C9NSCYkzTSw571Or8P_lU-eAnfXF2PHkWyamQCZn-qXSHs3CSBUnByT7UG-ahLeXpBuDuC_U5-GnekBSLyg9xCi_kevpmx70Y4Xk5oFtqYg3DGbHyoCU2poGiMc8QZnFIv6gklq8k9x1h544BKqHOhKKshHcBaPt7HnGdsCZLw5yupVLICvEd-TS4cLIAqqcCu6U15p6N5xgZ6aExbfZrwC-o6ZmRIDT84NFqMy934j2Y3rJ4P1wNTUVoFiDqW";
 document
   .getElementById("job-form")
   .addEventListener("submit", function (event) {
@@ -38,11 +38,10 @@ document
     const urlParams = new URLSearchParams(window.location.search);
     const dealId = Number(urlParams.get("selectedIds"));
     const userId = Number(urlParams.get("userId"));
-    const orgId = Number(urlParams.get("companyId"));
 
-    console.log("dealId:", dealId, "userId:", userId, "orgId:", orgId);
+    console.log("dealId:", dealId, "userId:", userId);
 
-    if (!isNaN(dealId) && !isNaN(userId) && !isNaN(orgId)) {
+    if (!isNaN(dealId) && !isNaN(userId)) {
       const formData = {
         subject: `${document.getElementById("first-name").value} ${
           document.getElementById("last-name").value
@@ -57,7 +56,6 @@ document
         org_id: 1,
         deal_id: dealId,
         user_id: userId,
-        org_id: orgId,
       };
 
       fetch(`https://api.pipedrive.com/v1/activities?api_token=${API_KEY}`, {
