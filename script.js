@@ -37,6 +37,8 @@ document
 
     const urlParams = new URLSearchParams(window.location.search);
     const dealId = Number(urlParams.get("selectedIds"));
+    const userId = Number(urlParams.get("userId"));
+    const orgId = Number(urlParams.get("companyId"));
 
     const formData = {
       subject: `${document.getElementById("first-name").value} ${
@@ -50,6 +52,8 @@ document
       note: note,
       public_description: jobDescription,
       deal_id: dealId,
+      user_id: userId,
+      org_id: orgId,
     };
 
     fetch("https://api.pipedrive.com/v1/activities", {
