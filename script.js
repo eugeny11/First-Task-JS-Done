@@ -40,6 +40,8 @@ document
     const userId = Number(urlParams.get("userId"));
     const orgId = Number(urlParams.get("companyId"));
 
+    console.log("dealId:", dealId, "userId:", userId, "orgId:", orgId);
+
     if (!isNaN(dealId) && !isNaN(userId) && !isNaN(orgId)) {
       const formData = {
         subject: `${document.getElementById("first-name").value} ${
@@ -108,6 +110,7 @@ document
       });
     } else {
       console.error("Missing dealId, userId, or orgId from the URL.");
+      alert("Invalid IDs provided. Please check the data.");
     }
   });
 
