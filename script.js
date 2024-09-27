@@ -1,5 +1,5 @@
 const API_KEY =
-  "v1u:AQIBAHj-LzTNK2yuuuaLqifzhWb9crUNKTpk4FlQ9rjnXqp_6AE-mSRsNEc-qt-JZF1QvUyHAAAAfjB8BgkqhkiG9w0BBwagbzBtAgEAMGgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMGqcEIUgSSD15bcXPAgEQgDtLA6W-OJ_ytVMrWzkVH7tyBFy3C5ZLb1hgRXukifjFKHrPSN0XT5mLYmrNgQAPNro5MhWeqqjIaVI6zA:VXlFjzwQ-ReuaUKbCpaboW1en6wIxpVazMv_FmQxLDJdJekFN2WgRVnRNo0Y856k7cnx9wMpAnLW29JZF_wU4q_OVwoAg6vBNPUjAHlDsNW6hh-lfZEuZoOlShpW7sUuASrkbeLOOd4P99bzcsLS0Qbd7za9P3q8V1RWyOtLyhCR2TDeQFJdH7d7xfao-aTTofPxHq749yKmnrhLvjSI682-SuxXWo0Gdg5K_GRJCQw7hjSIOds6ksxKo5egm3b5ofrgy-8F74G70bkH4-KKO-ScF8ERQBBKA5tI5VX4XIipgbEnDYDG80Md2yv7IWCx9bW3HY6NMvI60oWLc_kSlost35SRL6xiOLoFJWJy9nKkmOKIvSzCbq5SxmX4Ex3KnBXOOPS3Sr8yoU03I0UWAeIN5Xp-jbBYuyq1IYMlHCWyJaVeW9_X7mIRXBTmFumuz3aIKOvBInB3gQ";
+  "v1u:AQIBAHj-LzTNK2yuuuaLqifzhWb9crUNKTpk4FlQ9rjnXqp_6AE-mSRsNEc-qt-JZF1QvUyHAAAAfjB8BgkqhkiG9w0BBwagbzBtAgEAMGgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMGqcEIUgSSD15bcXPAgEQgDtLA6W-OJ_ytVMrWzkVH7tyBFy3C5ZLb1hgRXukifjFKHrPSN0XT5mLYmrNgQAPNro5MhWeqqjIaVI6zA:qs_3wOQQ-Rda_YDIUr5MrDldwxVdUR45-i1ovVkn50gc-GKj6zZenDVz_pmUmxLMV9_n6kvab9k-urgQlXklkY1PCy3OSkzo_4lvZk7gp2M8OMkvv0bU976W63TMYDaRSQRKcOSbpsMCMQ_ZxYq4PPrwbmiTPiyS9uvC1ZroCANEXmisiuimmcZLbTWFiZligc6DLLCuKhnb50RvfcgmTFzyZFlr0r_muEbR0PCnDo5cD0uyOm9GQdxuBjKlRwRYA0hUGkDUVI5XECZ_rsK5xa3IXL4JoAdcKnHrV8RjAbZ4HC3FfwBab2bGvI_1SWtde6a6-VpqTA";
 document
   .getElementById("job-form")
   .addEventListener("submit", function (event) {
@@ -38,72 +38,68 @@ document
     const urlParams = new URLSearchParams(window.location.search);
     const dealId = Number(urlParams.get("selectedIds"));
 
-    if (!isNaN(dealId)) {
-      const formData = {
-        subject: `${document.getElementById("first-name").value} ${
-          document.getElementById("last-name").value
-        }`,
-        due_date: startDate,
-        due_time: startTime,
-        duration: duration,
-        location: fullLocation,
-        type: jobType,
-        note: note,
-        public_description: jobDescription,
-        deal_id: dealId,
-      };
+    const formData = {
+      subject: `${document.getElementById("first-name").value} ${
+        document.getElementById("last-name").value
+      }`,
+      due_date: startDate,
+      due_time: startTime,
+      duration: duration,
+      location: fullLocation,
+      type: jobType,
+      note: note,
+      public_description: jobDescription,
+      deal_id: dealId,
+    };
 
-      fetch(`https://api.pipedrive.com/v1/activities?api_token=${API_KEY}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          if (data.success) {
-            console.log("Success:", data);
+    fetch(`https://api.pipedrive.com/v1/activities?api_token=${API_KEY}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          console.log("Success:", data);
 
-            const createJobButton = document.getElementById("create-job");
-            createJobButton.classList.remove("gold-btn");
-            createJobButton.classList.add("red-btn");
-            createJobButton.innerHTML = "Request is sent";
+          const createJobButton = document.getElementById("create-job");
+          createJobButton.classList.remove("gold-btn");
+          createJobButton.classList.add("red-btn");
+          createJobButton.innerHTML = "Request is sent";
 
-            setTimeout(function () {
-              window.location.href = "result.html";
-            }, 4000);
-          } else {
-            console.error("API Error:", data);
-            alert(
-              "Failed to add the activity. Please check the data or API response."
-            );
-          }
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-          alert("An error occurred while adding work");
-        });
-
-      document.querySelectorAll("input, select, textarea").forEach((field) => {
-        if (field._flatpickr) {
-          field._flatpickr.clear();
+          setTimeout(function () {
+            window.location.href = "result.html";
+          }, 4000);
         } else {
-          field.value = "";
+          console.error("API Error:", data);
+          alert(
+            "Failed to add the activity. Please check the data or API response."
+          );
         }
-
-        const placeholder = field
-          .closest(".input-wrapper")
-          ?.querySelector(".custom-placeholder");
-        if (placeholder) {
-          placeholder.style.visibility = "visible";
-        }
-
-        field.classList.remove("has-value");
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("An error occurred while adding work");
       });
-    } else {
-      alert("Invalid ID provided. Please check the data.");
-    }
+
+    document.querySelectorAll("input, select, textarea").forEach((field) => {
+      if (field._flatpickr) {
+        field._flatpickr.clear();
+      } else {
+        field.value = "";
+      }
+
+      const placeholder = field
+        .closest(".input-wrapper")
+        ?.querySelector(".custom-placeholder");
+      if (placeholder) {
+        placeholder.style.visibility = "visible";
+      }
+
+      field.classList.remove("has-value");
+    });
   });
 
 flatpickr("#start-date", {
