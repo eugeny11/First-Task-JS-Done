@@ -38,9 +38,8 @@ document
     const urlParams = new URLSearchParams(window.location.search);
     const dealId = Number(urlParams.get("selectedIds"));
     const userId = Number(urlParams.get("userId"));
-    const orgId = Number(urlParams.get("companyId"));
 
-    if (!isNaN(dealId) && !isNaN(userId) && !isNaN(orgId)) {
+    if (!isNaN(dealId) && !isNaN(userId)) {
       const formData = {
         subject: `${document.getElementById("first-name").value} ${
           document.getElementById("last-name").value
@@ -52,7 +51,6 @@ document
         type: jobType,
         note: note,
         public_description: jobDescription,
-        org_id: orgId,
         deal_id: dealId,
         user_id: userId,
       };
