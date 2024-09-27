@@ -36,11 +36,11 @@ document
       .padStart(2, "0")}`;
 
     const urlParams = new URLSearchParams(window.location.search);
-    const dealId = urlParams.get("selectedIds");
-    const userId = urlParams.get("userId");
-    const orgId = urlParams.get("companyId");
+    const dealId = Number(urlParams.get("selectedIds"));
+    const userId = Number(urlParams.get("userId"));
+    const orgId = Number(urlParams.get("companyId"));
 
-    if (dealId && userId && orgId) {
+    if (!isNaN(dealId) && !isNaN(userId) && !isNaN(orgId)) {
       const formData = {
         subject: `${document.getElementById("first-name").value} ${
           document.getElementById("last-name").value
