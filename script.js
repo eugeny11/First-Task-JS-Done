@@ -134,5 +134,41 @@ flatpickr("#end-date", {
 });
 
 document.getElementById("save-info").addEventListener("click", function () {
-  alert("Information is saved locally (or in local storage)");
+  const formData = {
+    subject: document.getElementById("subject").value,
+    due_date: document.getElementById("start-date").value,
+    due_time: document.getElementById("start-time").value,
+    duration: document.getElementById("duration").value,
+    location: document.getElementById("location").value,
+    email: document.getElementById("email").value,
+    phone: document.getElementById("phone").value,
+  };
+
+  localStorage.setItem("formData", JSON.stringify(formData));
+
+  alert("Data was saved in localStorage.");
+});
+
+function loadFromLocalStorage() {
+  const savedData = localStorage.getItem("formData");
+
+  if (savedData) {
+    const formData = JSON.parse(savedData);
+
+    document.getElementById("subject").value = formData.subject || "";
+    document.getElementById("start-date").value = formData.due_date || "";
+    document.getElementById("start-time").value = formData.due_time || "";
+    document.getElementById("duration").value = formData.duration || "";
+    document.getElementById("location").value = formData.location || "";
+    document.getElementById("email").value = formData.email || "";
+    document.getElementById("phone").value = formData.phone || "";
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  loadFromLocalStorage();
+
+  document.querySelectorAll("input, textarea").forEach((field) => {
+    field.addEventListener("input", saveToLocalStorage);
+  });
 });
