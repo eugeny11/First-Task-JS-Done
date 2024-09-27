@@ -107,6 +107,8 @@ document
 
         field.classList.remove("has-value");
       });
+    } else {
+      console.error("Missing dealId, userId, or orgId from the URL.");
     }
   });
 
