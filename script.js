@@ -36,68 +36,78 @@ document
       .toString()
       .padStart(2, "0")}`;
 
-    const formData = {
-      subject: `${document.getElementById("first-name").value} ${
-        document.getElementById("last-name").value
-      }`,
-      due_date: startDate,
-      due_time: startTime,
-      duration: duration,
-      location: fullLocation,
-      type: jobType,
-      note: note,
-      public_description: jobDescription,
-      org_id: 1,
-    };
+    const urlParams = new URLSearchParams(window.location.search);
+    const dealId = urlParams.get("selectedIds");
+    const userId = urlParams.get("userId");
+    const orgId = urlParams.get("companyId");
 
-    fetch(`https://api.pipedrive.com/v1/activities?api_token=${API_KEY}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
-          console.log("Success:", data);
+    if (dealId && userId && orgId) {
+      const formData = {
+        subject: `${document.getElementById("first-name").value} ${
+          document.getElementById("last-name").value
+        }`,
+        due_date: startDate,
+        due_time: startTime,
+        duration: duration,
+        location: fullLocation,
+        type: jobType,
+        note: note,
+        public_description: jobDescription,
+        org_id: 1,
+        deal_id: dealId,
+        user_id: userId,
+        org_id: orgId,
+      };
 
-          const createJobButton = document.getElementById("create-job");
-          createJobButton.classList.remove("gold-btn");
-          createJobButton.classList.add("red-btn");
-          createJobButton.innerHTML = "Request is sent";
-
-          setTimeout(function () {
-            window.location.href = "result.html";
-          }, 4000);
-        } else {
-          console.error("API Error:", data);
-          alert(
-            "Failed to add the activity. Please check the data or API response."
-          );
-        }
+      fetch(`https://api.pipedrive.com/v1/activities?api_token=${API_KEY}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
       })
-      .catch((error) => {
-        console.error("Error:", error);
-        alert("An error occurred while adding work");
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.success) {
+            console.log("Success:", data);
+
+            const createJobButton = document.getElementById("create-job");
+            createJobButton.classList.remove("gold-btn");
+            createJobButton.classList.add("red-btn");
+            createJobButton.innerHTML = "Request is sent";
+
+            setTimeout(function () {
+              window.location.href = "result.html";
+            }, 4000);
+          } else {
+            console.error("API Error:", data);
+            alert(
+              "Failed to add the activity. Please check the data or API response."
+            );
+          }
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          alert("An error occurred while adding work");
+        });
+
+      document.querySelectorAll("input, select, textarea").forEach((field) => {
+        if (field._flatpickr) {
+          field._flatpickr.clear();
+        } else {
+          field.value = "";
+        }
+
+        const placeholder = field
+          .closest(".input-wrapper")
+          ?.querySelector(".custom-placeholder");
+        if (placeholder) {
+          placeholder.style.visibility = "visible";
+        }
+
+        field.classList.remove("has-value");
       });
-
-    document.querySelectorAll("input, select, textarea").forEach((field) => {
-      if (field._flatpickr) {
-        field._flatpickr.clear();
-      } else {
-        field.value = "";
-      }
-
-      const placeholder = field
-        .closest(".input-wrapper")
-        ?.querySelector(".custom-placeholder");
-      if (placeholder) {
-        placeholder.style.visibility = "visible";
-      }
-
-      field.classList.remove("has-value");
-    });
+    }
   });
 
 flatpickr("#start-date", {
