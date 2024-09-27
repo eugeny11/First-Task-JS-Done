@@ -49,7 +49,6 @@ document
       type: jobType,
       note: note,
       public_description: jobDescription,
-      deal_id: dealId,
     };
 
     fetch(`https://api.pipedrive.com/v1/activities?api_token=${API_KEY}`, {
