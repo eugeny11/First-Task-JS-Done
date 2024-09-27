@@ -1,5 +1,5 @@
 const API_KEY =
-  "v1u:AQIBAHj-LzTNK2yuuuaLqifzhWb9crUNKTpk4FlQ9rjnXqp_6AE-mSRsNEc-qt-JZF1QvUyHAAAAfjB8BgkqhkiG9w0BBwagbzBtAgEAMGgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMGqcEIUgSSD15bcXPAgEQgDtLA6W-OJ_ytVMrWzkVH7tyBFy3C5ZLb1hgRXukifjFKHrPSN0XT5mLYmrNgQAPNro5MhWeqqjIaVI6zA:xqCLBPoP-RdAjP7mhC9UlBDGDsyguCD1bwuQTet5CvF1uhiVKqLTns3U1TwA1IH8MH5eWmEoqn-9MOeB1tWwwS8IqfJ_C9NSCYkzTSw571Or8P_lU-eAnfXF2PHkWyamQCZn-qXSHs3CSBUnByT7UG-ahLeXpBuDuC_U5-GnekBSLyg9xCi_kevpmx70Y4Xk5oFtqYg3DGbHyoCU2poGiMc8QZnFIv6gklq8k9x1h544BKqHOhKKshHcBaPt7HnGdsCZLw5yupVLICvEd-TS4cLIAqqcCu6U15p6N5xgZ6aExbfZrwC-o6ZmRIDT84NFqMy934j2Y3rJ4P1wNTUVoFiDqW";
+  "v1u:AQIBAHj-LzTNK2yuuuaLqifzhWb9crUNKTpk4FlQ9rjnXqp_6AE-mSRsNEc-qt-JZF1QvUyHAAAAfjB8BgkqhkiG9w0BBwagbzBtAgEAMGgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMGqcEIUgSSD15bcXPAgEQgDtLA6W-OJ_ytVMrWzkVH7tyBFy3C5ZLb1hgRXukifjFKHrPSN0XT5mLYmrNgQAPNro5MhWeqqjIaVI6zA:VXlFjzwQ-ReuaUKbCpaboW1en6wIxpVazMv_FmQxLDJdJekFN2WgRVnRNo0Y856k7cnx9wMpAnLW29JZF_wU4q_OVwoAg6vBNPUjAHlDsNW6hh-lfZEuZoOlShpW7sUuASrkbeLOOd4P99bzcsLS0Qbd7za9P3q8V1RWyOtLyhCR2TDeQFJdH7d7xfao-aTTofPxHq749yKmnrhLvjSI682-SuxXWo0Gdg5K_GRJCQw7hjSIOds6ksxKo5egm3b5ofrgy-8F74G70bkH4-KKO-ScF8ERQBBKA5tI5VX4XIipgbEnDYDG80Md2yv7IWCx9bW3HY6NMvI60oWLc_kSlost35SRL6xiOLoFJWJy9nKkmOKIvSzCbq5SxmX4Ex3KnBXOOPS3Sr8yoU03I0UWAeIN5Xp-jbBYuyq1IYMlHCWyJaVeW9_X7mIRXBTmFumuz3aIKOvBInB3gQ";
 document
   .getElementById("job-form")
   .addEventListener("submit", function (event) {
@@ -38,10 +38,9 @@ document
     const urlParams = new URLSearchParams(window.location.search);
     const dealId = Number(urlParams.get("selectedIds"));
     const userId = Number(urlParams.get("userId"));
+    const orgId = Number(urlParams.get("companyId"));
 
-    console.log("dealId:", dealId, "userId:", userId);
-
-    if (!isNaN(dealId) && !isNaN(userId)) {
+    if (!isNaN(dealId) && !isNaN(userId) && !isNaN(orgId)) {
       const formData = {
         subject: `${document.getElementById("first-name").value} ${
           document.getElementById("last-name").value
@@ -53,7 +52,7 @@ document
         type: jobType,
         note: note,
         public_description: jobDescription,
-        org_id: 1,
+        org_id: orgId,
         deal_id: dealId,
         user_id: userId,
       };
@@ -107,8 +106,7 @@ document
         field.classList.remove("has-value");
       });
     } else {
-      console.error("Missing dealId, userId, or orgId from the URL.");
-      alert("Invalid IDs provided. Please check the data.");
+      alert("Invalid ID provided. Please check the data.");
     }
   });
 
